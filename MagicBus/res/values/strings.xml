@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Magic Bus</string>
+    
+    <string name="route_view_refresh">Refresh</string>
+    <string name="route_view_please_wait">Please wait...</string>
+    <string name="route_view_fetching_feed">Fetching feed...</string>
+    <string name="route_view_fetch_error">An unexpected error occurred when fetching feed.</string>
+    <string name="route_view_no_feed">Feed unavailable.</string>
+    <string name="route_view_no_routes">No routes running at this time!</string>
+</resources>
