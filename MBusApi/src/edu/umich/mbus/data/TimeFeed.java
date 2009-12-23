@@ -85,10 +85,24 @@ public class TimeFeed {
 	public List<Route> getRoutes() {
 		return mRoutes;
 	}
+	
+	/**
+	 * Returns route object with name routeName. Returns null if not found.
+	 * @param routeName Name of route.
+	 * @return Route object with name routeName. Null if not found.
+	 */
+	public Route getRouteWithName(String routeName) {
+		for (Route route : mRoutes) {
+			if (route.getName().compareTo(routeName) == 0) {
+				return route;
+			}
+		}
+		return null;
+	}
 
 	private URL mFeedUrl;
 	private ArrayList<Route> mRoutes = new ArrayList<Route>();
 
-	private static final String FEED_URL = "http://www-personal.umich.edu/~gopalkri/public_feed.xml";
-	//private static final String FEED_URL = "http://mbus.pts.umich.edu/shared/public_feed.xml";
+	//private static final String FEED_URL = "http://www-personal.umich.edu/~gopalkri/public_feed.xml";
+	private static final String FEED_URL = "http://mbus.pts.umich.edu/shared/public_feed.xml";
 }

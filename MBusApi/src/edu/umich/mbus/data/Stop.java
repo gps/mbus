@@ -1,6 +1,7 @@
 package edu.umich.mbus.data;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.w3c.dom.Element;
@@ -69,6 +70,7 @@ public class Stop {
 			int id = Integer.parseInt(Utilities.getStringValueByTagName(element, "id" + arrivalCtr++));
 			mArrivals.add(new Arrival(toa, id));
 		}
+		Collections.sort(mArrivals);
 		if (TimeFeed.PRINT_DEBUG_OUTPUT) {
 			System.out.print("Arrivals: ");
 			for (Arrival arrival : mArrivals) {
@@ -118,6 +120,17 @@ public class Stop {
 	 */
 	public List<Arrival> getArrivals() {
 		return mArrivals;
+	}
+	
+	/**
+	 * Gets earliest arrival at stop.
+	 * @return Earliest arrival at stop.
+	 */
+	public Arrival getEarliestArrival() {
+		if (mArrivals.size() <= 0) {
+			return null;
+		}
+		return mArrivals.get(0);
 	}
 
 	/**

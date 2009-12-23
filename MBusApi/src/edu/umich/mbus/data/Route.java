@@ -49,31 +49,51 @@ public class Route {
 			}
 		}
 	}
-	
+
 	/**
 	 * Gets name of route.
+	 * 
 	 * @return Route name.
 	 */
 	public String getName() {
 		return mName;
 	}
-	
+
 	/**
 	 * Returns id of route.
+	 * 
 	 * @return Route id.
 	 */
 	public int getId() {
 		return mId;
 	}
-	
+
 	/**
 	 * Gets list of stops on route.
+	 * 
 	 * @return List of stops on route.
 	 */
 	public List<Stop> getStops() {
 		return mStops;
 	}
-	
+
+	/**
+	 * Gets stop object with primary name primaryName. Returns null if not
+	 * found.
+	 * 
+	 * @param primaryName
+	 *            Primary name of stop.
+	 * @return Stop object with primary name primaryName. Null if not found.
+	 */
+	public Stop getStopWithName(String primaryName) {
+		for (Stop stop : mStops) {
+			if (stop.getPrimaryName().compareTo(primaryName) == 0) {
+				return stop;
+			}
+		}
+		return null;
+	}
+
 	/**
 	 * @see java.lang.Object#toString()
 	 */
@@ -85,7 +105,7 @@ public class Route {
 		}
 		return ret;
 	}
-	
+
 	private String mName;
 	private int mId;
 	private ArrayList<Stop> mStops = new ArrayList<Stop>();

@@ -14,6 +14,7 @@
         </activity>
         <activity android:name=".RouteView" />
         <activity android:name=".StopView" />
+        <activity android:name=".StopDetailsView" />
         <activity android:name=".FavoritesView" />
     </application>
     <uses-sdk android:minSdkVersion="3" />

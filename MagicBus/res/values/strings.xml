@@ -8,4 +8,9 @@
     <string name="route_view_fetch_error">An unexpected error occurred when fetching feed.</string>
     <string name="route_view_no_feed">Feed unavailable.</string>
     <string name="route_view_no_routes">No routes running at this time!</string>
+    
+    <string name="stop_view_no_route">This route is no longer running.</string>
+    
+    <string name="stop_details_view_other_names">Other names:</string>
+    <string name="stop_details_view_arrivals">Arrivals:</string>
 </resources>

@@ -8,11 +8,16 @@ import java.util.List;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import edu.umich.mbus.data.MBusDataException;
 import edu.umich.mbus.data.Route;
 import edu.umich.mbus.data.TimeFeed;
@@ -25,8 +30,11 @@ import edu.umich.mbus.data.TimeFeed;
  */
 public class RouteView extends ListActivity {
 	
+	/**
+	 * Route name key in extras passed into StopView.
+	 */
+	public static final String ROUTE_NAME = "ROUTE_NAME";
 	
-
 	/**
 	 * Menu id of Refresh.
 	 */
@@ -36,11 +44,16 @@ public class RouteView extends ListActivity {
 	 * ProgressDialog to display when fetching feed.
 	 */
 	private ProgressDialog mProgressDialog = null;
+	
+	/**
+	 * Contains all active route names.
+	 */
+	private String[] mRouteNames = null;
 
 	/**
-	 * Fetches feed and dismisses progress dialog.
+	 * Fetches feed and sends message to main thread.
 	 */
-	private Runnable feedFetcher = new Runnable() {
+	private Runnable mFeedFetcher = new Runnable() {
 
 		@Override
 		public void run() {
@@ -51,11 +64,28 @@ public class RouteView extends ListActivity {
 				Log.e("TIME_FEED_FETCHER", e.getMessage());
 				displayFetchError();
 			} finally {
-				mProgressDialog.dismiss();
-				initializeUI();
+				mHandler.sendEmptyMessage(0);
 			}
 		}
 
+	};
+	
+	/**
+	 * Receives message from feed fetcher thread and updates view.
+	 */
+	private Handler mHandler = new Handler() {
+
+		/**
+		 * @see android.os.Handler#handleMessage(android.os.Message)
+		 */
+		@Override
+		public void handleMessage(Message msg) {
+			super.handleMessage(msg);
+			mRouteNames = getRouteNames();
+			initializeUI();
+			mProgressDialog.dismiss();
+		}
+		
 	};
 
 	/**
@@ -64,6 +94,11 @@ public class RouteView extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		mRouteNames = new String[0];
+		setListAdapter(new ArrayAdapter<String>(this,
+				R.layout.route_view, mRouteNames));
+		getListView().setTextFilterEnabled(true);
 		
 		fetchFeed();
 	}
@@ -85,16 +120,40 @@ public class RouteView extends ListActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		boolean result = super.onOptionsItemSelected(item);
-		fetchFeed();
+		switch (item.getItemId()) {
+		case REFRESH_MENU_ID:
+			fetchFeed();
+			break;
+		}
 		return result;
 	}
 	
+	/**
+	 * @see android.app.ListActivity#onListItemClick(android.widget.ListView, android.view.View, int, long)
+	 */
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+		
+		String routeName = mRouteNames[((Long)id).intValue()];
+		Intent intent = new Intent(this, StopView.class);
+		intent.putExtra(ROUTE_NAME, routeName);
+		startActivity(intent);
+	}
+
+	/**
+	 * Initializes this ListActivity's list adapter with route information.
+	 */
 	private void initializeUI() {
 		setListAdapter(new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, getRouteNames()));
+				android.R.layout.simple_list_item_1, mRouteNames));
 		getListView().setTextFilterEnabled(true);
 	}
 
+	/**
+	 * Gets names of all routes currently running.
+	 * @return Names of all routes currently running.
+	 */
 	private String[] getRouteNames() {
 		if (MainView.timeFeed == null) {
 			new AlertDialog.Builder(this).setMessage(
@@ -108,16 +167,22 @@ public class RouteView extends ListActivity {
 		return ret;
 	}
 	
+	/**
+	 * Fetches feed on a new thread.
+	 */
 	private void fetchFeed() {
-		new Thread(feedFetcher).start();
+		new Thread(mFeedFetcher).start();
 		mProgressDialog = ProgressDialog.show(this,
 				getString(R.string.route_view_please_wait),
 				getString(R.string.route_view_fetching_feed));
 	}
 
+	/**
+	 * Displays error dialog with feed fetch error message.
+	 */
 	private void displayFetchError() {
 		new AlertDialog.Builder(this)
 				.setMessage(R.string.route_view_fetch_error).create().show();
 	}
-
+ 
 }
