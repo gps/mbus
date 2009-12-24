@@ -3,16 +3,22 @@
  */
 package edu.umich.mbus.android;
 
+import java.io.IOException;
+
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.ListView;
+import android.widget.AdapterView.AdapterContextMenuInfo;
 import edu.umich.mbus.data.Route;
 import edu.umich.mbus.data.Stop;
 
@@ -26,7 +32,8 @@ public class StopView extends ListActivity {
 
 	public static final String STOP_NAME = "STOP_NAME";
 
-	private static final int REFRESH_MENU_ID = 1;
+	private static final int REFRESH_MENU_ID = Menu.FIRST + 1;
+	private static final int FAVORITE_CONTEXT_MENU_ID = 2;
 
 	private StopAdapter mAdapter = null;
 	private Route mRoute = null;
@@ -69,6 +76,8 @@ public class StopView extends ListActivity {
 		mRoute = MainView.timeFeed.getRouteWithName(mRouteName);
 
 		initializeUI();
+
+		registerForContextMenu(getListView());
 	}
 
 	/**
@@ -109,6 +118,53 @@ public class StopView extends ListActivity {
 			break;
 		}
 		return result;
+	}
+
+	/**
+	 * @see android.app.Activity#onCreateContextMenu(android.view.ContextMenu,
+	 *      android.view.View, android.view.ContextMenu.ContextMenuInfo)
+	 */
+	@Override
+	public void onCreateContextMenu(ContextMenu menu, View v,
+			ContextMenuInfo menuInfo) {
+		super.onCreateContextMenu(menu, v, menuInfo);
+		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
+		String routeName = mRoute.getName();
+		String stopName = mRoute.getStops().get(((Long)info.id).intValue()).getPrimaryName();
+		int msg;
+		if (FavoritesStore.getInstance(this).doesFavoriteExist(
+				new Favorite(routeName, stopName))) {
+			msg = R.string.stop_view_remove_from_favorites;
+		} else {
+			msg = R.string.stop_view_add_to_favorites;
+		}
+		menu.add(Menu.NONE, FAVORITE_CONTEXT_MENU_ID, Menu.NONE, msg);
+	}
+
+	/**
+	 * @see android.app.Activity#onContextItemSelected(android.view.MenuItem)
+	 */
+	@Override
+	public boolean onContextItemSelected(MenuItem item) {
+		switch(item.getItemId()) {
+	    case FAVORITE_CONTEXT_MENU_ID:
+	        AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
+	        String routeName = mRoute.getName();
+			String stopName = mRoute.getStops().get(((Long)info.id).intValue()).getPrimaryName();
+			Favorite favorite = new Favorite(routeName, stopName);
+			if (FavoritesStore.getInstance(this).doesFavoriteExist(favorite)) {
+			}
+			else {
+				try {
+					FavoritesStore.getInstance(this).addFavorite(favorite);
+				} catch (IOException e) {
+					// Should never happen.
+					Log.e("FAVORITE", e.getMessage());
+				}
+			}
+	        return true;
+	    }
+		return super.onContextItemSelected(item);
 	}
 
 	private void initializeUI() {

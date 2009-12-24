@@ -25,56 +25,14 @@ import android.util.Log;
 public class FavoritesStore {
 
 	private static final String FAVORITES_FILE_NAME = "favorites.txt";
-	private static final String ROUTE_STOP_SEPARATOR = "|";
 
-	/**
-	 * Represents a favorite. Contains a route name and a stop name.
-	 * 
-	 * @author gopalkri
-	 * 
-	 */
-	public class Favorite {
-		private String mRouteName;
-		private String mStopName;
+	private static FavoritesStore sInstance = null;
 
-		/**
-		 * Initializes this object with routeName and stopName.
-		 * 
-		 * @param routeName
-		 *            Name of route.
-		 * @param stopName
-		 *            Name of stop.
-		 */
-		public Favorite(String routeName, String stopName) {
-			mRouteName = routeName;
-			mStopName = stopName;
+	public static FavoritesStore getInstance(Context context) {
+		if (sInstance == null) {
+			sInstance = new FavoritesStore(context);
 		}
-
-		/**
-		 * Gets route name.
-		 * 
-		 * @return Route name.
-		 */
-		public String getRouteName() {
-			return mRouteName;
-		}
-
-		/**
-		 * Gets stop name.
-		 * 
-		 * @return Stop name.
-		 */
-		public String getStopName() {
-			return mStopName;
-		}
-
-		/**
-		 * @see java.lang.Object#toString()
-		 */
-		@Override
-		public String toString() {
-			return mRouteName + ROUTE_STOP_SEPARATOR + mStopName;
-		}
+		return sInstance;
 	}
 
 	private ArrayList<Favorite> mFavorites = new ArrayList<Favorite>();
@@ -86,7 +44,7 @@ public class FavoritesStore {
 	 * @param context
 	 *            Context from which to read file.
 	 */
-	public FavoritesStore(Context context) {
+	private FavoritesStore(Context context) {
 		FileInputStream fin = null;
 		try {
 			fin = context.openFileInput(FAVORITES_FILE_NAME);
@@ -101,11 +59,11 @@ public class FavoritesStore {
 				if (line.compareTo("") == 0) {
 					continue;
 				}
-				String[] split = line.split(ROUTE_STOP_SEPARATOR);
-				if (split.length != 2) {
-					throw new IOException("Unable to split non empty line.");
+				try {
+					mFavorites.add(new Favorite(line));
+				} catch (IllegalArgumentException ex) {
+					throw new IOException(ex.getMessage());
 				}
-				mFavorites.add(new Favorite(split[0], split[1]));
 			}
 		} catch (IOException e) {
 			// Unexpected - should not happen.
@@ -149,5 +107,53 @@ public class FavoritesStore {
 		osw.close();
 		fout.flush();
 		fout.close();
+	}
+
+	/**
+	 * Removes favorite from favorites file. Does nothing if favorite does not
+	 * exist.
+	 * 
+	 * @param favorite
+	 *            Favorite to remove.
+	 * @throws IOException
+	 *             If an unexpected error occurs when writing to file.
+	 */
+	public void removeFavorite(Favorite favorite) throws IOException {
+		int index = getIndexOfFavorite(favorite);
+		if (index < 0) {
+			return;
+		}
+		mFavorites.remove(index);
+		FileOutputStream fout;
+		fout = mContext.openFileOutput(FAVORITES_FILE_NAME,
+				Context.MODE_PRIVATE);
+		OutputStreamWriter osw = new OutputStreamWriter(fout);
+		for (Favorite f : mFavorites) {
+			osw.write(f.toString() + "\n");
+		}
+		osw.flush();
+		osw.close();
+		fout.flush();
+		fout.close();
+	}
+
+	/**
+	 * Returns true if favorite does exist. False otherwise.
+	 * 
+	 * @param favorite
+	 *            Favorite to check for existence.
+	 * @return True if favorite exists, false otherwise.
+	 */
+	public boolean doesFavoriteExist(Favorite favorite) {
+		return getIndexOfFavorite(favorite) >= 0;
+	}
+
+	private int getIndexOfFavorite(Favorite favorite) {
+		for (int i = 0; i < mFavorites.size(); ++i) {
+			if (mFavorites.get(i).compareTo(favorite) == 0) {
+				return i;
+			}
+		}
+		return -1;
 	}
 }
