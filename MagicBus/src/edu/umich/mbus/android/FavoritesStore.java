@@ -26,36 +26,42 @@ public class FavoritesStore {
 
 	private static final String FAVORITES_FILE_NAME = "favorites.txt";
 	private static final String ROUTE_STOP_SEPARATOR = "|";
-	
+
 	/**
 	 * Represents a favorite. Contains a route name and a stop name.
+	 * 
 	 * @author gopalkri
-	 *
+	 * 
 	 */
 	public class Favorite {
 		private String mRouteName;
 		private String mStopName;
-		
+
 		/**
 		 * Initializes this object with routeName and stopName.
-		 * @param routeName Name of route.
-		 * @param stopName Name of stop.
+		 * 
+		 * @param routeName
+		 *            Name of route.
+		 * @param stopName
+		 *            Name of stop.
 		 */
 		public Favorite(String routeName, String stopName) {
 			mRouteName = routeName;
 			mStopName = stopName;
 		}
-		
+
 		/**
 		 * Gets route name.
+		 * 
 		 * @return Route name.
 		 */
 		public String getRouteName() {
 			return mRouteName;
 		}
-		
+
 		/**
 		 * Gets stop name.
+		 * 
 		 * @return Stop name.
 		 */
 		public String getStopName() {
@@ -70,10 +76,16 @@ public class FavoritesStore {
 			return mRouteName + ROUTE_STOP_SEPARATOR + mStopName;
 		}
 	}
-	
-	private ArrayList<Favorite> mFavoritePairs = new ArrayList<Favorite>();
+
+	private ArrayList<Favorite> mFavorites = new ArrayList<Favorite>();
 	private Context mContext = null;
 
+	/**
+	 * Initializes this object with data from favorites file.
+	 * 
+	 * @param context
+	 *            Context from which to read file.
+	 */
 	public FavoritesStore(Context context) {
 		FileInputStream fin = null;
 		try {
@@ -93,28 +105,43 @@ public class FavoritesStore {
 				if (split.length != 2) {
 					throw new IOException("Unable to split non empty line.");
 				}
-				mFavoritePairs.add(new Favorite(split[0], split[1]));
+				mFavorites.add(new Favorite(split[0], split[1]));
 			}
 		} catch (IOException e) {
 			// Unexpected - should not happen.
 			Log.e("READ_FAVORITES_FILE", e.getMessage());
-			mFavoritePairs.clear();
+			mFavorites.clear();
 			context.deleteFile(FAVORITES_FILE_NAME);
 		}
 		mContext = context;
 	}
-	
-	public ArrayList<Favorite> getAllFavoritePairs() {
-		return mFavoritePairs;
+
+	/**
+	 * Gets all favorites.
+	 * 
+	 * @return All favorites.
+	 */
+	public ArrayList<Favorite> getAllFavorites() {
+		return mFavorites;
 	}
-	
+
+	/**
+	 * Adds favorite to favorites file.
+	 * 
+	 * @param favorite
+	 *            Favorite to add.
+	 * @throws IOException
+	 *             If an unexpected error occurred when writing to file.
+	 */
 	public void addFavorite(Favorite favorite) throws IOException {
 		FileOutputStream fout;
 		try {
-			fout = mContext.openFileOutput(FAVORITES_FILE_NAME, Context.MODE_APPEND);
+			fout = mContext.openFileOutput(FAVORITES_FILE_NAME,
+					Context.MODE_APPEND);
 		} catch (FileNotFoundException e) {
 			// File doesn't exist, so create it.
-			fout = mContext.openFileOutput(FAVORITES_FILE_NAME, Context.MODE_PRIVATE);
+			fout = mContext.openFileOutput(FAVORITES_FILE_NAME,
+					Context.MODE_PRIVATE);
 		}
 		OutputStreamWriter osw = new OutputStreamWriter(fout);
 		osw.write(favorite.toString() + "\n");
