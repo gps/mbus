@@ -33,7 +33,7 @@ public class StopView extends ListActivity {
 	public static final String STOP_NAME = "STOP_NAME";
 
 	private static final int REFRESH_MENU_ID = Menu.FIRST + 1;
-	private static final int FAVORITE_CONTEXT_MENU_ID = 2;
+	private static final int FAVORITE_CONTEXT_MENU_ID = Menu.FIRST + 2;
 
 	private StopAdapter mAdapter = null;
 	private Route mRoute = null;
@@ -153,6 +153,12 @@ public class StopView extends ListActivity {
 			String stopName = mRoute.getStops().get(((Long)info.id).intValue()).getPrimaryName();
 			Favorite favorite = new Favorite(routeName, stopName);
 			if (FavoritesStore.getInstance(this).doesFavoriteExist(favorite)) {
+				try {
+					FavoritesStore.getInstance(this).removeFavorite(favorite);
+				} catch (IOException e) {
+					// Should never happen
+					Log.e("FAVORITE", e.getMessage());
+				}
 			}
 			else {
 				try {

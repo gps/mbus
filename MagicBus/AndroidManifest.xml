@@ -15,9 +15,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".RouteView" />
+        <activity android:name=".FavoritesView" />
         <activity android:name=".StopView" />
         <activity android:name=".StopDetailsView" />
-        <activity android:name=".FavoritesView" />
     </application>
     <uses-sdk android:minSdkVersion="3" />
     <uses-permission android:name="android.permission.INTERNET"/>

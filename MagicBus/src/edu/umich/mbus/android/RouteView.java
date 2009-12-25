@@ -72,9 +72,11 @@ public class RouteView extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		setContentView(R.layout.route_view);
+
 		mRouteNames = new String[0];
-		setListAdapter(new ArrayAdapter<String>(this, R.layout.route_view,
-				mRouteNames));
+		setListAdapter(new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, mRouteNames));
 		getListView().setTextFilterEnabled(true);
 
 		fetchFeed();

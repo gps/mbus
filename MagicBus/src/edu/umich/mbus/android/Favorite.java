@@ -8,7 +8,7 @@ package edu.umich.mbus.android;
  */
 public class Favorite implements Comparable<Favorite> {
 
-	private static final String ROUTE_STOP_SEPARATOR = "|";
+	private static final String ROUTE_STOP_SEPARATOR = "|||";
 
 	private String mRouteName;
 	private String mStopName;

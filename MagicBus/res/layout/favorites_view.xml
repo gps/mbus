@@ -10,7 +10,7 @@
     <TextView android:id="@+id/android:empty"
        android:layout_width="fill_parent" 
        android:layout_height="fill_parent"
-       android:text="@string/route_view_no_routes"
+       android:text="@string/favorites_view_no_favorites"
        android:textSize="25dip" />
        
 </LinearLayout>

@@ -45,6 +45,7 @@ public class FavoritesStore {
 	 *            Context from which to read file.
 	 */
 	private FavoritesStore(Context context) {
+		mContext = context;
 		FileInputStream fin = null;
 		try {
 			fin = context.openFileInput(FAVORITES_FILE_NAME);
@@ -71,7 +72,6 @@ public class FavoritesStore {
 			mFavorites.clear();
 			context.deleteFile(FAVORITES_FILE_NAME);
 		}
-		mContext = context;
 	}
 
 	/**
@@ -107,6 +107,7 @@ public class FavoritesStore {
 		osw.close();
 		fout.flush();
 		fout.close();
+		mFavorites.add(favorite);
 	}
 
 	/**

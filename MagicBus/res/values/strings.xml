@@ -16,4 +16,6 @@
     
     <string name="stop_details_view_other_names">Other names:</string>
     <string name="stop_details_view_arrivals">Arrivals:</string>
+    
+    <string name="favorites_view_no_favorites">You have no favorites.</string>
 </resources>
