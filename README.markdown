@@ -1,6 +1,6 @@
 ## MBus Android
 
-mbus is an Android client for the University of Michigan's Magic Bus system: http://mbus.pts.umich.edu/ It's written in Java, for Android SDK 1.5 or greater.
+mbus is an Android client for the [University of Michigan's Magic Bus](http://mbus.pts.umich.edu/) system. It's written in Java, for Android SDK 1.5 or greater.
 
 ###Goals
 - View Magic Bus data quickly. 
@@ -27,7 +27,7 @@ Why not just write a new mobile website instead of a native Android app? This en
 
 - Some of the features I want can't be done easily with a web app (or so I think).
 
-- There are already two native iPhone app for this (the second one seems to be nicer): http://itunes.apple.com/us/app/mbus/id321927057?mt=8 and http://itunes.apple.com/us/app/campus-to-campus/id322705603?mt=8
+- There are already two native iPhone app for this (the second one seems to be nicer): [one](http://itunes.apple.com/us/app/mbus/id321927057?mt=8) and [two](http://itunes.apple.com/us/app/campus-to-campus/id322705603?mt=8)
 
 - I don't know enough web development (especially mobile) to do this right, if it is possible.
 
