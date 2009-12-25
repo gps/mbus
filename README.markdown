@@ -47,8 +47,7 @@ This project will be released under the GPL. I'll get the GPL licensing stuff in
 
 ###Contact
 I am best reached by email: gopalkri AT umich DOT edu OR gopalkrishnaps AT gmail DOT com
-If you're interested, here's my webpage (not quite up to date all the time): http://www.umich.edu/~gopalkri
-If you want to help with the dev work, let me know. I do this for fun in my free time, so I could use help :)
+If you're interested, here's my [webpage](http://www.umich.edu/~gopalkri) (not quite up to date all the time). If you want to help with the dev work, let me know. I do this for fun in my free time, so I could use help :)
 
 ###Feedback/Thoughts
 I'd love to hear your feedback/thoughts. Email me about this. 
