@@ -51,6 +51,10 @@ public class StopAdapter extends ArrayAdapter<Stop> {
 			TextView toa = (TextView) v.findViewById(R.id.stop_row_toa);
 			if (name != null) {
 				name.setText(stop.getPrimaryName());
+				List<String> otherNames = stop.getOtherNames();
+				if (otherNames != null && otherNames.size() > 0) {
+					name.setText(otherNames.get(otherNames.size() - 1));
+				}
 			}
 			if (toa != null) {
 				String arrival = null;
