@@ -3,13 +3,18 @@
  */
 package edu.umich.mbus.android;
 
+import java.io.IOException;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import edu.umich.mbus.data.Arrival;
 import edu.umich.mbus.data.Route;
@@ -30,8 +35,10 @@ public class StopDetailsView extends Activity {
 
 	private String mRouteName = null;
 	private String mStopName = null;
+	private boolean mStopIsFavorite = false;
 
 	private ProgressDialog mProgressDialog = null;
+	private Button mBtnFavorite = null;
 
 	/**
 	 * Receives message from feed fetcher thread and updates view.
@@ -119,6 +126,47 @@ public class StopDetailsView extends Activity {
 			}
 			tvArrivals.setText(sb.toString());
 		}
+
+		mBtnFavorite = (Button) findViewById(R.id.stop_details_view_favorite);
+		if (FavoritesStore.getInstance(this).doesFavoriteExist(
+				new Favorite(mRouteName, mStopName))) {
+			mBtnFavorite
+					.setText(R.string.stop_details_view_remove_from_favorites);
+			mStopIsFavorite = true;
+		} else {
+			mBtnFavorite.setText(R.string.stop_details_view_add_to_favorites);
+			mStopIsFavorite = false;
+		}
+		mBtnFavorite.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (mStopIsFavorite) {
+					try {
+						FavoritesStore.getInstance(StopDetailsView.this)
+								.removeFavorite(
+										new Favorite(mRouteName, mStopName));
+						mBtnFavorite
+								.setText(R.string.stop_details_view_add_to_favorites);
+						mStopIsFavorite = false;
+					} catch (IOException e) {
+						// Should never happen.
+						Log.e("FAVORITES", e.getMessage());
+					}
+				} else {
+					try {
+						FavoritesStore.getInstance(StopDetailsView.this)
+								.addFavorite(
+										new Favorite(mRouteName, mStopName));
+						mBtnFavorite
+								.setText(R.string.stop_details_view_remove_from_favorites);
+						mStopIsFavorite = true;
+					} catch (IOException e) {
+						// Should never happen.
+						Log.e("FAVORITES", e.getMessage());
+					}
+				}
+			}
+		});
 	}
 
 	/**

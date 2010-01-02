@@ -33,5 +33,12 @@
         android:id="@+id/stop_details_view_arrivals"
         android:textSize="20dip"
         android:padding="5dip" />
+        
+    <Button android:layout_width="fill_parent" 
+        android:layout_height="wrap_content" 
+        android:id="@+id/stop_details_view_favorite"
+        android:padding="20dip"
+        android:textSize="20dip"
+        android:gravity="center_vertical|center_horizontal" />
     
 </LinearLayout>
