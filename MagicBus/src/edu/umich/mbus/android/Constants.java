@@ -16,5 +16,5 @@ public class Constants {
 	
 	public static final int STOPS_ROUTE = 1;
 	public static final int STOPS_FAVORITES = 2;
-	public static final int STOPS_NEARBY = 3;
+	public static final int STOPS_NEAR_ME = 3;
 }

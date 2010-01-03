@@ -31,7 +31,7 @@ public class MainView extends TabActivity {
 				.setContent(
 						new Intent(this, StopView.class).putExtra(
 								Constants.STOP_VIEW_TYPE,
-								Constants.STOPS_NEARBY)));
+								Constants.STOPS_NEAR_ME)));
 
 		tabHost.setCurrentTab(0);
 	}

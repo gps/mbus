@@ -189,7 +189,7 @@ public class StopView extends ListActivity {
 		case Constants.STOPS_FAVORITES:
 			mStops = LiveFavorites.getLiveFavorites(this);
 			break;
-		case Constants.STOPS_NEARBY:
+		case Constants.STOPS_NEAR_ME:
 			break;
 		}
 	}
@@ -206,7 +206,7 @@ public class StopView extends ListActivity {
 		case Constants.STOPS_FAVORITES:
 			setContentView(R.layout.favorites_view);
 			break;
-		case Constants.STOPS_NEARBY:
+		case Constants.STOPS_NEAR_ME:
 			break;
 		}
 
