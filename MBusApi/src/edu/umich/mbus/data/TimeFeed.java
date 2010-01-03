@@ -103,6 +103,6 @@ public class TimeFeed {
 	private URL mFeedUrl;
 	private ArrayList<Route> mRoutes = new ArrayList<Route>();
 
-	//private static final String FEED_URL = "http://www-personal.umich.edu/~gopalkri/public_feed.xml";
-	private static final String FEED_URL = "http://mbus.pts.umich.edu/shared/public_feed.xml";
+	private static final String FEED_URL = "http://www-personal.umich.edu/~gopalkri/public_feed.xml";
+	//private static final String FEED_URL = "http://mbus.pts.umich.edu/shared/public_feed.xml";
 }

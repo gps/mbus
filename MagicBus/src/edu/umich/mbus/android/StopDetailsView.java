@@ -67,8 +67,8 @@ public class StopDetailsView extends Activity {
 		setContentView(R.layout.stop_details_view);
 
 		Bundle extras = getIntent().getExtras();
-		mRouteName = extras.getString(RouteView.ROUTE_NAME);
-		mStopName = extras.getString(StopView.STOP_NAME);
+		mRouteName = extras.getString(Constants.ROUTE_NAME);
+		mStopName = extras.getString(Constants.STOP_NAME);
 
 		initializeUI();
 	}

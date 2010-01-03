@@ -28,11 +28,6 @@ import edu.umich.mbus.data.Route;
 public class RouteView extends ListActivity {
 
 	/**
-	 * Route name key in extras passed into StopView.
-	 */
-	public static final String ROUTE_NAME = "ROUTE_NAME";
-
-	/**
 	 * Menu id of Refresh.
 	 */
 	private static final int REFRESH_MENU_ID = 1;
@@ -116,7 +111,8 @@ public class RouteView extends ListActivity {
 
 		String routeName = mRouteNames[((Long) id).intValue()];
 		Intent intent = new Intent(this, StopView.class);
-		intent.putExtra(ROUTE_NAME, routeName);
+		intent.putExtra(Constants.ROUTE_NAME, routeName);
+		intent.putExtra(Constants.STOP_VIEW_TYPE, Constants.STOPS_ROUTE);
 		startActivity(intent);
 	}
 

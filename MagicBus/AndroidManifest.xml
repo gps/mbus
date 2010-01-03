@@ -15,7 +15,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".RouteView" />
-        <activity android:name=".FavoritesView" />
         <activity android:name=".StopView" />
         <activity android:name=".StopDetailsView" />
     </application>

@@ -45,7 +45,7 @@ public class Route {
 			Node stopNode = stops.item(s);
 			if (stopNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element stopElement = (Element) stopNode;
-				mStops.add(new Stop(stopElement));
+				mStops.add(new Stop(stopElement, mName));
 			}
 		}
 	}

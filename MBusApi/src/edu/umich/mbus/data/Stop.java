@@ -17,9 +17,13 @@ public class Stop {
 	/**
 	 * Initializes this object with stop data from element. Assumes element
 	 * contains valid xml for a stop.
-	 * @param element XML element representing this object.
+	 * 
+	 * @param element
+	 *            XML element representing this object.
+	 * @param routeName
+	 *            Name of route to which this stop belongs.
 	 */
-	public Stop(Element element) {
+	public Stop(Element element, String routeName) {
 		// Get primary name.
 		mName = Utilities.getStringValueByTagName(element, "name");
 		if (TimeFeed.PRINT_DEBUG_OUTPUT) {
@@ -44,6 +48,12 @@ public class Stop {
 			}
 			System.out.println();
 		}
+		
+		// Route name.
+		mRouteName = routeName;
+		if (TimeFeed.PRINT_DEBUG_OUTPUT) {
+			System.out.println("Route name: " + mRouteName);
+		}
 
 		// Get latitude.
 		mLatitude = Double.parseDouble(Utilities.getStringValueByTagName(
@@ -62,19 +72,22 @@ public class Stop {
 		// Get arrivals.
 		int arrivalCtr = 1;
 		while (true) {
-			String toaStr = Utilities.getStringValueByTagName(element, "toa" + arrivalCtr);
+			String toaStr = Utilities.getStringValueByTagName(element, "toa"
+					+ arrivalCtr);
 			if (toaStr == null) {
 				break;
 			}
 			double toa = Double.parseDouble(toaStr);
-			int id = Integer.parseInt(Utilities.getStringValueByTagName(element, "id" + arrivalCtr++));
+			int id = Integer.parseInt(Utilities.getStringValueByTagName(
+					element, "id" + arrivalCtr++));
 			mArrivals.add(new Arrival(toa, id));
 		}
 		Collections.sort(mArrivals);
 		if (TimeFeed.PRINT_DEBUG_OUTPUT) {
 			System.out.print("Arrivals: ");
 			for (Arrival arrival : mArrivals) {
-				System.out.print(arrival.getTimeOfArrival() + " " + arrival.getBusId() + "\t");
+				System.out.print(arrival.getTimeOfArrival() + " "
+						+ arrival.getBusId() + "\t");
 			}
 			System.out.println();
 		}
@@ -97,33 +110,46 @@ public class Stop {
 	public List<String> getOtherNames() {
 		return mOtherNames;
 	}
-	
+
+	/**
+	 * Gets name of route on which this stop exists.
+	 * 
+	 * @return Route name.
+	 */
+	public String getRouteName() {
+		return mRouteName;
+	}
+
 	/**
 	 * Gets latitude of stop.
+	 * 
 	 * @return Latitude of stop.
 	 */
 	public double getLatitude() {
 		return mLatitude;
 	}
-	
+
 	/**
 	 * Gets longitude of stop.
+	 * 
 	 * @return Longitude of stop.
 	 */
 	public double getLongitude() {
 		return mLongitude;
 	}
-	
+
 	/**
 	 * Gets list of arrivals at stop.
+	 * 
 	 * @return List of arrivals at stop.
 	 */
 	public List<Arrival> getArrivals() {
 		return mArrivals;
 	}
-	
+
 	/**
 	 * Gets earliest arrival at stop.
+	 * 
 	 * @return Earliest arrival at stop.
 	 */
 	public Arrival getEarliestArrival() {
@@ -149,7 +175,7 @@ public class Stop {
 		}
 		return ret;
 	}
-	
+
 	/**
 	 * @see java.lang.Object#hashCode()
 	 */
@@ -180,9 +206,10 @@ public class Stop {
 			return false;
 		return true;
 	}
-	
+
 	private String mName;
 	private ArrayList<String> mOtherNames = new ArrayList<String>();
+	private String mRouteName;
 	private double mLatitude;
 	private double mLongitude;
 	private ArrayList<Arrival> mArrivals = new ArrayList<Arrival>();

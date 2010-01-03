@@ -24,7 +24,14 @@ public class MainView extends TabActivity {
 				.setContent(new Intent(this, RouteView.class)));
 		tabHost.addTab(tabHost.newTabSpec("Favorites")
 				.setIndicator("Favorites").setContent(
-						new Intent(this, FavoritesView.class)));
+						new Intent(this, StopView.class).putExtra(
+								Constants.STOP_VIEW_TYPE,
+								Constants.STOPS_FAVORITES)));
+		tabHost.addTab(tabHost.newTabSpec("Near Me").setIndicator("Near Me")
+				.setContent(
+						new Intent(this, StopView.class).putExtra(
+								Constants.STOP_VIEW_TYPE,
+								Constants.STOPS_NEARBY)));
 
 		tabHost.setCurrentTab(0);
 	}
