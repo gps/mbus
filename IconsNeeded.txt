@@ -1,7 +1,7 @@
 The following icons are needed:
 
 1. Application icon.
-2. Refresh icon.
+2. Refresh icon. - Got this one.
 3. Route tab icon.
 4. Favorites tab icon.
 5. Near me tab icon.

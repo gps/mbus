@@ -105,7 +105,7 @@ public class StopView extends ListActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		boolean result = super.onCreateOptionsMenu(menu);
-		menu.add(Menu.NONE, REFRESH_MENU_ID, Menu.NONE, R.string.refresh);
+		menu.add(Menu.NONE, REFRESH_MENU_ID, Menu.NONE, R.string.refresh).setIcon(R.drawable.refresh);
 		return result;
 	}
 
