@@ -4,5 +4,5 @@ The following icons are needed:
 2. Refresh icon.
 3. Route tab icon.
 4. Favorites tab icon.
-4. Near me tab icon.
+5. Near me tab icon.
 
