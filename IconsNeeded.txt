@@ -2,7 +2,7 @@ The following icons are needed:
 
 1. Application icon.
 2. Refresh icon. - Got this one.
-3. Route tab icon.
-4. Favorites tab icon.
-5. Near me tab icon.
+3. Route tab icon. - Ripped off from mbus site - need new one.
+4. Favorites tab icon. - Found one online, but looks hideous, would infinitely prefer a star.
+5. Near me tab icon. - Found one online, not great.
 
