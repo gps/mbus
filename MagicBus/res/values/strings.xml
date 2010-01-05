@@ -20,4 +20,6 @@
     <string name="stop_details_view_add_to_favorites">Add to favorites</string>
     
     <string name="favorites_view_no_favorites">You have no favorites.</string>
+    
+    <string name="near_me_view_no_stops">There are either no stops near you or your location cannot be determined correctly.</string>
 </resources>
