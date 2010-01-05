@@ -20,18 +20,19 @@ public class MainView extends TabActivity {
 
 		TabHost tabHost = getTabHost();
 
-		tabHost.addTab(tabHost.newTabSpec("Routes").setIndicator("Routes")
-				.setContent(new Intent(this, RouteView.class)));
-		tabHost.addTab(tabHost.newTabSpec("Favorites")
-				.setIndicator("Favorites").setContent(
-						new Intent(this, StopView.class).putExtra(
-								Constants.STOP_VIEW_TYPE,
-								Constants.STOPS_FAVORITES)));
-		tabHost.addTab(tabHost.newTabSpec("Near Me").setIndicator("Near Me")
+		tabHost.addTab(tabHost.newTabSpec("Routes").setIndicator("Routes",
+				getResources().getDrawable(R.drawable.route)).setContent(
+				new Intent(this, RouteView.class)));
+		tabHost.addTab(tabHost.newTabSpec("Favorites").setIndicator(
+				"Favorites", getResources().getDrawable(R.drawable.favorites))
 				.setContent(
 						new Intent(this, StopView.class).putExtra(
 								Constants.STOP_VIEW_TYPE,
-								Constants.STOPS_NEAR_ME)));
+								Constants.STOPS_FAVORITES)));
+		tabHost.addTab(tabHost.newTabSpec("Near Me").setIndicator("Near Me",
+				getResources().getDrawable(R.drawable.near_me)).setContent(
+				new Intent(this, StopView.class).putExtra(
+						Constants.STOP_VIEW_TYPE, Constants.STOPS_NEAR_ME)));
 
 		tabHost.setCurrentTab(0);
 	}
