@@ -46,12 +46,7 @@ import edu.umich.mbus.data.Stop;
  */
 public class StopView extends ListActivity {
 
-	private static final int REFRESH_MENU_ID = Menu.FIRST + 1;
-	private static final int FAVORITE_CONTEXT_MENU_ID = Menu.FIRST + 2;
-
 	private StopAdapter mAdapter = null;
-	// private Route mRoute = null;
-	// private String mRouteName = null;
 	private List<Stop> mStops = null;
 	private int mViewType = Constants.STOPS_FAVORITES;
 
@@ -121,7 +116,10 @@ public class StopView extends ListActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		boolean result = super.onCreateOptionsMenu(menu);
-		menu.add(Menu.NONE, REFRESH_MENU_ID, Menu.NONE, R.string.refresh).setIcon(R.drawable.refresh);
+		menu.add(Menu.NONE, Constants.REFRESH_MENU_ID, Menu.NONE,
+				R.string.refresh).setIcon(R.drawable.refresh);
+		menu.add(Menu.NONE, Constants.HELP_MENU_ID, Menu.NONE, R.string.help)
+				.setIcon(android.R.drawable.ic_menu_help);
 		return result;
 	}
 
@@ -132,8 +130,11 @@ public class StopView extends ListActivity {
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		boolean result = super.onMenuItemSelected(featureId, item);
 		switch (item.getItemId()) {
-		case REFRESH_MENU_ID:
+		case Constants.REFRESH_MENU_ID:
 			fetchFeed();
+			break;
+		case Constants.HELP_MENU_ID:
+			startActivity(new Intent(this, HelpView.class));
 			break;
 		}
 		return result;
@@ -156,7 +157,7 @@ public class StopView extends ListActivity {
 		} else {
 			msg = R.string.stop_view_add_to_favorites;
 		}
-		menu.add(Menu.NONE, FAVORITE_CONTEXT_MENU_ID, Menu.NONE, msg);
+		menu.add(Menu.NONE, Constants.FAVORITE_CONTEXT_MENU_ID, Menu.NONE, msg);
 	}
 
 	/**
@@ -165,7 +166,7 @@ public class StopView extends ListActivity {
 	@Override
 	public boolean onContextItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case FAVORITE_CONTEXT_MENU_ID:
+		case Constants.FAVORITE_CONTEXT_MENU_ID:
 			AdapterContextMenuInfo info = (AdapterContextMenuInfo) item
 					.getMenuInfo();
 			Stop stop = mStops.get(((Long) info.id).intValue());
@@ -215,7 +216,7 @@ public class StopView extends ListActivity {
 	 * Initializes this ListActivity's list adapter with stop information.
 	 */
 	private void initializeUI() {
-		
+
 		switch (mViewType) {
 		case Constants.STOPS_ROUTE:
 			setContentView(R.layout.stop_view);

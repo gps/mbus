@@ -23,6 +23,7 @@ import java.io.IOException;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -43,11 +44,6 @@ import edu.umich.mbus.data.Stop;
  * 
  */
 public class StopDetailsView extends Activity {
-
-	/**
-	 * Menu id of Refresh.
-	 */
-	private static final int REFRESH_MENU_ID = 1;
 
 	private String mRouteName = null;
 	private String mStopName = null;
@@ -95,7 +91,10 @@ public class StopDetailsView extends Activity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		boolean result = super.onCreateOptionsMenu(menu);
-		menu.add(Menu.NONE, REFRESH_MENU_ID, Menu.NONE, R.string.refresh);
+		menu.add(Menu.NONE, Constants.REFRESH_MENU_ID, Menu.NONE,
+				R.string.refresh).setIcon(R.drawable.refresh);
+		menu.add(Menu.NONE, Constants.HELP_MENU_ID, Menu.NONE, R.string.help)
+				.setIcon(android.R.drawable.ic_menu_help);
 		return result;
 	}
 
@@ -106,8 +105,11 @@ public class StopDetailsView extends Activity {
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 		boolean result = super.onMenuItemSelected(featureId, item);
 		switch (item.getItemId()) {
-		case REFRESH_MENU_ID:
+		case Constants.REFRESH_MENU_ID:
 			fetchFeed();
+			break;
+		case Constants.HELP_MENU_ID:
+			startActivity(new Intent(this, HelpView.class));
 			break;
 		}
 		return result;

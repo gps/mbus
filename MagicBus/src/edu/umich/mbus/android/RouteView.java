@@ -44,11 +44,6 @@ import edu.umich.mbus.data.Route;
 public class RouteView extends ListActivity {
 
 	/**
-	 * Menu id of Refresh.
-	 */
-	private static final int REFRESH_MENU_ID = 1;
-
-	/**
 	 * ProgressDialog to display when fetching feed.
 	 */
 	private ProgressDialog mProgressDialog = null;
@@ -99,7 +94,10 @@ public class RouteView extends ListActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		boolean result = super.onCreateOptionsMenu(menu);
-		menu.add(Menu.NONE, REFRESH_MENU_ID, Menu.NONE, R.string.refresh).setIcon(R.drawable.refresh);
+		menu.add(Menu.NONE, Constants.REFRESH_MENU_ID, Menu.NONE,
+				R.string.refresh).setIcon(R.drawable.refresh);
+		menu.add(Menu.NONE, Constants.HELP_MENU_ID, Menu.NONE, R.string.help)
+				.setIcon(android.R.drawable.ic_menu_help);
 		return result;
 	}
 
@@ -110,8 +108,11 @@ public class RouteView extends ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		boolean result = super.onOptionsItemSelected(item);
 		switch (item.getItemId()) {
-		case REFRESH_MENU_ID:
+		case Constants.REFRESH_MENU_ID:
 			fetchFeed();
+			break;
+		case Constants.HELP_MENU_ID:
+			startActivity(new Intent(this, HelpView.class));
 			break;
 		}
 		return result;

@@ -19,24 +19,23 @@
 
 package edu.umich.mbus.android;
 
-import android.view.Menu;
+import android.app.Activity;
+import android.os.Bundle;
 
 /**
- * Contains all constants used in the edu.umich.mbus.android package.
- * 
+ * Displays help information.
  * @author gopalkri
- * 
+ *
  */
-public class Constants {
-	public static final String ROUTE_NAME = "ROUTE_NAME";
-	public static final String STOP_NAME = "STOP_NAME";
-	public static final String STOP_VIEW_TYPE = "STOP_VIEW_TYPE";
-	
-	public static final int STOPS_ROUTE = 1;
-	public static final int STOPS_FAVORITES = 2;
-	public static final int STOPS_NEAR_ME = 3;
-	
-	public static final int REFRESH_MENU_ID = Menu.FIRST + 1;
-	public static final int HELP_MENU_ID = Menu.FIRST + 2;
-	public static final int FAVORITE_CONTEXT_MENU_ID = Menu.FIRST + 3;
+public class HelpView extends Activity {
+
+	/**
+	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 */
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.favorites_view);
+	}
+
 }
