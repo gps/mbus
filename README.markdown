@@ -2,6 +2,10 @@
 
 mbus is an Android client for the [University of Michigan's Magic Bus](http://mbus.pts.umich.edu/) system. It's written in Java, for Android SDK 1.5 or greater.
 
+Magic Bus has been __published__ on the __Android Market__. It is a __free__ application. You can find it by searching for "mbus". The application is called "Magic Bus", and the publisher is listed as "Gopalkrishna Sharma".
+
+You can also download an unsigned apk from the Downloads tab. I recommend against that since the apk is not optimized. If at all possible download from the Android Market.
+
 ###Goals
 - View Magic Bus data quickly. 
 - Get to arrival information with as few touches as possible.
