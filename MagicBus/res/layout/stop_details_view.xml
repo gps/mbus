@@ -19,46 +19,51 @@ You should have received a copy of the GNU General Public License
 along with MBus.  If not, see <http://www.gnu.org/licenses/>. 
 -->
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent">
     
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dip"
-        android:id="@+id/stop_details_view_primary_name"
-        android:textSize="30dip"
-        android:gravity="center_vertical|center_horizontal" />
-        
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dip"
-        android:text="@string/stop_details_view_other_names" />
-        
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/stop_details_view_other_names"
-        android:textSize="20dip"
-        android:padding="5dip" />
-        
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dip"
-        android:text="@string/stop_details_view_arrivals" />
-        
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/stop_details_view_arrivals"
-        android:textSize="20dip"
-        android:padding="5dip" />
-        
-    <Button android:layout_width="fill_parent" 
-        android:layout_height="wrap_content" 
-        android:id="@+id/stop_details_view_favorite"
-        android:padding="20dip"
-        android:textSize="20dip"
-        android:gravity="center_vertical|center_horizontal" />
+    <LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical">
+	    
+	    <TextView android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:padding="10dip"
+	        android:id="@+id/stop_details_view_primary_name"
+	        android:textSize="30dip"
+	        android:gravity="center_vertical|center_horizontal" />
+	        
+	    <TextView android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:padding="5dip"
+	        android:text="@string/stop_details_view_other_names" />
+	        
+	    <TextView android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/stop_details_view_other_names"
+	        android:textSize="20dip"
+	        android:padding="5dip" />
+	        
+	    <TextView android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:padding="5dip"
+	        android:text="@string/stop_details_view_arrivals" />
+	        
+	    <TextView android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:id="@+id/stop_details_view_arrivals"
+	        android:textSize="20dip"
+	        android:padding="5dip" />
+	        
+	    <Button android:layout_width="fill_parent" 
+	        android:layout_height="wrap_content" 
+	        android:id="@+id/stop_details_view_favorite"
+	        android:padding="20dip"
+	        android:textSize="20dip"
+	        android:gravity="center_vertical|center_horizontal" />
+	    
+	</LinearLayout>
     
-</LinearLayout>
+</ScrollView>

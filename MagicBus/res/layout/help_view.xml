@@ -24,9 +24,14 @@ along with MBus.  If not, see <http://www.gnu.org/licenses/>.
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
     
-    <TextView android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/help_view_instructions"
-        android:textSize="20dip" />
+    <ScrollView android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+        
+        <TextView android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/help_view_instructions"
+            android:textSize="20dip" />
+        
+    </ScrollView>
   
 </LinearLayout>
