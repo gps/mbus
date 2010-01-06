@@ -43,7 +43,7 @@ I decided to split the code that retrieves and parses the Magic Bus feed into it
 I'm still not done designing the UI of the Android app. When I finish it, I'll write about it here.
 
 ###Licensing
-This project will be released under the GPL. I'll get the GPL licensing stuff in at some point. In the meantime, feel free to use the code. I take no responsibility for any consequences of using this code, especially bad consequences. I would appreciate if you let me know if you use the code here. 
+This project is licensed under the GPL. You are free to use it in any way as long as it does not violate the terms of the GPL. I request (but you don't have to) that you let me know if you use anything from this project.
 
 ###Authors
 I wrote all the code for the app. The icons were done by Brieana MacDonald (briemac AT umich DOT edu). 
