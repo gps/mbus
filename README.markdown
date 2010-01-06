@@ -6,6 +6,15 @@ Magic Bus has been __published__ on the __Android Market__. It is a __free__ app
 
 You can also download an unsigned apk from the Downloads tab. I recommend against that since the apk is not optimized. If at all possible download from the Android Market.
 
+## Screenshots
+![Routes](http://www-personal.umich.edu/~gopalkri/mbus/screenshots/Routes.png)
+
+![Stops](http://www-personal.umich.edu/~gopalkri/mbus/screenshots/Stops.png)
+
+![Stop Details](http://www-personal.umich.edu/~gopalkri/mbus/screenshots/StopDetails.png)
+
+![Favorites](http://www-personal.umich.edu/~gopalkri/mbus/screenshots/Favorites.png)
+
 ###Goals
 - View Magic Bus data quickly. 
 - Get to arrival information with as few touches as possible.
