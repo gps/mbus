@@ -1,4 +1,4 @@
-## MBus Android
+# MBus Android
 
 mbus is an Android client for the [University of Michigan's Magic Bus](http://mbus.pts.umich.edu/) system. It's written in Java, for Android SDK 1.5 or greater.
 
@@ -15,7 +15,7 @@ You can also download an unsigned apk from the Downloads tab. I recommend agains
 
 ![Favorites](http://www-personal.umich.edu/~gopalkri/mbus/screenshots/Favorites.png)
 
-###Goals
+## Goals
 - View Magic Bus data quickly. 
 - Get to arrival information with as few touches as possible.
 - Favorite route/bus stop pair, and view only favorites.
@@ -48,22 +48,22 @@ Why Android 1.5 (as opposed to >= 1.6 which offers different sized screen suppor
 
 I own a Moto Cliq, which as of this writing runs Android 1.5. Doesn't look like Motorola is going to update to 1.6 anytime soon, and I want to be able to use the app myself. Hopefully, other handset users won't be hit too hard by the varying screen sizes.
 
-###Design
+## Design
 There are 2 projects. One is a test harness for the Magic Bus Data package. The other is the Android application itself.
  
 I decided to split the code that retrieves and parses the Magic Bus feed into it's own package, so it can be used by other people for other projects. I also wanted to be able to test it separately and quickly, especially if the feed format changes in the future.
 
 I'm still not done designing the UI of the Android app. When I finish it, I'll write about it here.
 
-###Licensing
+## Licensing
 This project is licensed under the GPL. You are free to use it in any way as long as it does not violate the terms of the GPL. I request (but you don't have to) that you let me know if you use anything from this project.
 
-###Authors
+## Authors
 I wrote all the code for the app. The icons were done by Brieana MacDonald (briemac AT umich DOT edu). 
 
-###Contact
+## Contact
 I am best reached by email: gopalkri AT umich DOT edu OR gopalkrishnaps AT gmail DOT com
 If you're interested, here's my [webpage](http://www.umich.edu/~gopalkri) (not quite up to date all the time). If you want to help with the dev work, let me know. I do this for fun in my free time, so I could use help :)
 
-###Feedback/Thoughts
+## Feedback/Thoughts
 I'd love to hear your feedback/thoughts. Email me about this. 
