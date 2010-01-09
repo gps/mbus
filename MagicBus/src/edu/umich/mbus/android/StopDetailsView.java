@@ -185,6 +185,8 @@ public class StopDetailsView extends Activity {
 				}
 			}
 		});
+		
+		Reporter.sendUsageReport(Constants.USAGE_REPORT_STOP_DETAILS, null);
 	}
 
 	/**

@@ -140,6 +140,8 @@ public class RouteView extends ListActivity {
 		setListAdapter(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, mRouteNames));
 		getListView().setTextFilterEnabled(true);
+		
+		Reporter.sendUsageReport(Constants.USAGE_REPORT_ROUTES, null);
 	}
 
 	/**

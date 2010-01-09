@@ -31,12 +31,18 @@ public class Constants {
 	public static final String ROUTE_NAME = "ROUTE_NAME";
 	public static final String STOP_NAME = "STOP_NAME";
 	public static final String STOP_VIEW_TYPE = "STOP_VIEW_TYPE";
-	
+
 	public static final int STOPS_ROUTE = 1;
 	public static final int STOPS_FAVORITES = 2;
 	public static final int STOPS_NEAR_ME = 3;
-	
+
 	public static final int REFRESH_MENU_ID = Menu.FIRST + 1;
 	public static final int HELP_MENU_ID = Menu.FIRST + 2;
 	public static final int FAVORITE_CONTEXT_MENU_ID = Menu.FIRST + 3;
+	
+	public static final String USAGE_REPORT_ROUTES = "routes";
+	public static final String USAGE_REPORT_STOPS = "stops";
+	public static final String USAGE_REPORT_STOP_DETAILS = "stop_details";
+	public static final String USAGE_REPORT_FAVORITES = "favorites";
+	public static final String USAGE_REPORT_NEAR_ME = "near_me";
 }

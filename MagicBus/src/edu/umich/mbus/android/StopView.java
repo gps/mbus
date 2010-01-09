@@ -220,12 +220,15 @@ public class StopView extends ListActivity {
 		switch (mViewType) {
 		case Constants.STOPS_ROUTE:
 			setContentView(R.layout.stop_view);
+			Reporter.sendUsageReport(Constants.USAGE_REPORT_STOPS, null);
 			break;
 		case Constants.STOPS_FAVORITES:
 			setContentView(R.layout.favorites_view);
+			Reporter.sendUsageReport(Constants.USAGE_REPORT_FAVORITES, null);
 			break;
 		case Constants.STOPS_NEAR_ME:
 			setContentView(R.layout.near_me_view);
+			Reporter.sendUsageReport(Constants.USAGE_REPORT_NEAR_ME, null);
 			break;
 		}
 

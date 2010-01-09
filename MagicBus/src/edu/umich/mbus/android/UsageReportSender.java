@@ -19,24 +19,28 @@
 
 package edu.umich.mbus.android;
 
-import android.app.Activity;
-import android.os.Bundle;
+import android.os.Handler;
 
 /**
- * Displays help information.
+ * Sends a usage report to server.
  * 
  * @author gopalkri
  * 
  */
-public class HelpView extends Activity {
+class UsageReportSender extends ReportSender {
+
+	private static final String USAGE_REPORT_URL = "http://mbus-android.appspot.com/usage";
 
 	/**
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 * Constructs this object with parameters.
+	 * 
+	 * @param view
+	 *            View that was displayed.
+	 * @param handler
+	 *            Handler to send message to after sending is done. If null, no
+	 *            message is sent.
 	 */
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.help_view);
+	public UsageReportSender(String view, Handler handler) {
+		super(USAGE_REPORT_URL, "<view>" + view + "</view>", handler);
 	}
-
 }

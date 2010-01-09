@@ -19,24 +19,29 @@
 
 package edu.umich.mbus.android;
 
-import android.app.Activity;
-import android.os.Bundle;
+import android.os.Handler;
 
 /**
- * Displays help information.
+ * Provides an interface to send various reports to the report server.
  * 
  * @author gopalkri
  * 
  */
-public class HelpView extends Activity {
+public class Reporter {
 
 	/**
-	 * @see android.app.Activity#onCreate(android.os.Bundle)
+	 * Sends usage report, reporting that view was displayed.
+	 * 
+	 * @param view
+	 *            View that was displayed.
 	 */
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.help_view);
+	public static void sendUsageReport(String view, Handler handler) {
+		new Thread(new UsageReportSender(view, handler)).start();
 	}
 
+	public static void sendProblemReport(String description, String user_email,
+			Handler handler) {
+		new Thread(new ProblemReportSender(description, user_email, handler))
+				.start();
+	}
 }
