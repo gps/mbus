@@ -38,7 +38,8 @@ public class Constants {
 
 	public static final int REFRESH_MENU_ID = Menu.FIRST + 1;
 	public static final int HELP_MENU_ID = Menu.FIRST + 2;
-	public static final int FAVORITE_CONTEXT_MENU_ID = Menu.FIRST + 3;
+	public static final int REPORT_PROBLEM_MENU_ID = Menu.FIRST + 3;
+	public static final int FAVORITE_CONTEXT_MENU_ID = Menu.FIRST + 4;
 	
 	public static final String USAGE_REPORT_ROUTES = "routes";
 	public static final String USAGE_REPORT_STOPS = "stops";

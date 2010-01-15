@@ -27,6 +27,7 @@ along with MBus.  If not, see <http://www.gnu.org/licenses/>.
     <string name="please_wait">Please wait...</string>
     <string name="fetching_feed">Fetching feed...</string>
     <string name="fetch_error">An unexpected error occurred when fetching feed.</string>
+    <string name="report_problem">Report problem</string>
     
     <string name="route_view_no_feed">Feed unavailable.</string>
     <string name="route_view_no_routes">No routes running at this time!</string>
@@ -45,4 +46,6 @@ along with MBus.  If not, see <http://www.gnu.org/licenses/>.
     <string name="near_me_view_no_stops">There are either no stops near you or your location cannot be determined correctly.</string>
     
     <string name="help_view_instructions">All routes currently running are displayed in the Routes tab. Tap on a route to view all stops on the route and the earliest arrival at each stop. You can also tap on a stop to bring up more details about the stop. Note that some stops have the same name. This is because it's hard to distinguish between some stops. You can view the unique name of a stop by going to its details view.\n\nYou can add to your favorites by holding on a stop, or from the stop's details view. You can remove favorites the same way.\n\nThe Near Me tab requires that the phone have an up to date GPS location. If that is not the case, the data reflected there will not be accurate.</string>
+
+    <string name="report_problem_view_description">Problem description</string>
 </resources>

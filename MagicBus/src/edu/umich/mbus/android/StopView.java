@@ -120,6 +120,7 @@ public class StopView extends ListActivity {
 				R.string.refresh).setIcon(R.drawable.refresh);
 		menu.add(Menu.NONE, Constants.HELP_MENU_ID, Menu.NONE, R.string.help)
 				.setIcon(android.R.drawable.ic_menu_help);
+		menu.add(Menu.NONE, Constants.REPORT_PROBLEM_MENU_ID, Menu.NONE, R.string.report_problem);
 		return result;
 	}
 
